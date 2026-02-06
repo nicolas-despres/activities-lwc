@@ -1,0 +1,49 @@
+<template>
+    <article class="slds-card slds-m-around_small">
+        <div class="slds-card__header slds-grid slds-grid_vertical-align-center">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <lightning-icon icon-name="standard:task" size="small"></lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                        <span class="slds-text-heading_small">Activity Feed {nbInteractions}</span>
+                    </h2>
+                </div>
+                <div class="slds-no-flex">
+                    <lightning-button
+                        variant="base"
+                        label="Next"
+                        onclick={handleNext}
+                        disabled={isLoading}
+                    >
+                    </lightning-button>
+                </div>
+            </header>
+        </div>
+
+        <div class="slds-card__body slds-card__body_inner">
+            <template if:true={isLoading}>
+                <div class="slds-is-relative slds-p-vertical_large">
+                    <lightning-spinner size="small" alternative-text="Loading activity"></lightning-spinner>
+                </div>
+            </template>
+
+            <template if:true={error}>
+                <div class="slds-text-color_error slds-p-around_small">{error}</div>
+            </template>
+
+            <template if:true={hasElements}>
+                <ul class="slds-has-dividers_around-space">
+                    <template for:each={feed.elements} for:item="el">
+                        <c-feed-item key={el.id} element={el}></c-feed-item>
+                    </template>
+                </ul>
+            </template>
+
+            <template if:false={hasElements}>
+                <div class="slds-p-around_small slds-text-color_weak">No activity found.</div>
+            </template>
+        </div>
+    </article>
+</template>

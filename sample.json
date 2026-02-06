@@ -1,0 +1,666 @@
+{
+    "elements": [
+        {
+            "actor": {
+                "additionalLabel": null,
+                "communityNickname": "Utilisateur17054174659347321197",
+                "companyName": null,
+                "displayName": "Nicolas Despres",
+                "firstName": "Nicolas",
+                "id": "005IV000002mPB3YAM",
+                "isActive": true,
+                "isInThisCommunity": true,
+                "lastName": "Despres",
+                "motif": {
+                    "color": "1B96FF",
+                    "largeIconUrl": "/img/icon/profile64.png",
+                    "mediumIconUrl": "/img/icon/profile32.png",
+                    "smallIconUrl": "/img/icon/profile16.png",
+                    "svgIconUrl": null
+                },
+                "mySubscription": null,
+                "name": "Nicolas Despres",
+                "outOfOffice": {
+                    "message": ""
+                },
+                "photo": {
+                    "fullEmailPhotoUrl": "https://test.sandbox.my.salesforce.com/img/userprofile/default_profile_200_v2.png?fromEmail=1",
+                    "largePhotoUrl": "https://test.force.com/profilephoto/005/F",
+                    "mediumPhotoUrl": "https://test.force.com/profilephoto/005/M",
+                    "photoVersionId": null,
+                    "smallPhotoUrl": "https://test.force.com/profilephoto/005/T",
+                    "standardEmailPhotoUrl": "https://test.sandbox.my.salesforce.com/img/userprofile/default_profile_45_v2.png?fromEmail=1",
+                    "url": "/services/data/v60.0/connect/user-profiles/005IV000002mPB3YAM/photo"
+                },
+                "reputation": null,
+                "title": null,
+                "type": "User",
+                "url": "/services/data/v60.0/chatter/users/005IV000002mPB3YAM",
+                "userType": "Internal"
+            },
+            "body": {
+                "isRichText": true,
+                "messageSegments": [
+                    {
+                        "altText": null,
+                        "htmlTag": "p",
+                        "markupType": "Paragraph",
+                        "text": "",
+                        "type": "MarkupBegin",
+                        "url": null
+                    },
+                    {
+                        "text": "Hello",
+                        "type": "Text"
+                    },
+                    {
+                        "htmlTag": "p",
+                        "markupType": "Paragraph",
+                        "text": "\n",
+                        "type": "MarkupEnd"
+                    }
+                ],
+                "text": "Hello\n"
+            },
+            "capabilities": {
+                "associatedActions": {
+                    "platformActionGroups": []
+                },
+                "bookmarks": {
+                    "isBookmarkedByCurrentUser": false
+                },
+                "chatterLikes": {
+                    "isLikedByCurrentUser": false,
+                    "likesMessage": null,
+                    "myLike": null,
+                    "page": {
+                        "currentPageToken": 0,
+                        "currentPageUrl": "/services/data/v60.0/chatter/feed-elements/0D5AU00000ugrhC0AQ/capabilities/chatter-likes/items",
+                        "items": [],
+                        "nextPageToken": null,
+                        "nextPageUrl": null,
+                        "previousPageToken": null,
+                        "previousPageUrl": null,
+                        "total": 0
+                    }
+                },
+                "close": {
+                    "canContextUserUpdateIsClosed": true,
+                    "isClosed": false
+                },
+                "comments": {
+                    "page": {
+                        "currentPageToken": null,
+                        "currentPageUrl": "/services/data/v60.0/chatter/feed-elements/0D5AU00000ugrhC0AQ/capabilities/comments/items",
+                        "items": [],
+                        "nextPageToken": null,
+                        "nextPageUrl": null,
+                        "previousPageToken": null,
+                        "previousPageUrl": null,
+                        "total": 0
+                    }
+                },
+                "edit": {
+                    "isEditRestricted": false,
+                    "isEditableByMeUrl": "/services/data/v60.0/chatter/feed-elements/0D5AU00000ugrhC0AQ/capabilities/edit/is-editable-by-me",
+                    "lastEditedBy": null,
+                    "lastEditedDate": null,
+                    "latestRevision": 1,
+                    "relativeLastEditedDate": null
+                },
+                "interactions": {
+                    "count": 1
+                },
+                "mute": {
+                    "isMutedByMe": null
+                },
+                "readBy": {
+                    "isReadByMe": true,
+                    "lastReadDateByMe": "2026-02-06T14:43:36.000Z",
+                    "page": {
+                        "currentPageToken": null,
+                        "currentPageUrl": "/services/data/v60.0/chatter/feed-elements/0D5AU00000ugrhC0AQ/capabilities/read-by/items?pageSize=3",
+                        "items": [],
+                        "nextPageToken": null,
+                        "nextPageUrl": null,
+                        "previousPageToken": null,
+                        "previousPageUrl": null,
+                        "total": 0
+                    }
+                },
+                "status": {
+                    "feedEntityStatus": "Published",
+                    "isApprovableByMe": true
+                },
+                "topics": {
+                    "canAssignTopics": true,
+                    "items": []
+                },
+                "upDownVote": {
+                    "downVoteCount": 0,
+                    "myVote": "None",
+                    "upVoteCount": 0
+                }
+            },
+            "clientInfo": null,
+            "createdDate": "2026-02-06T14:43:36.000Z",
+            "event": false,
+            "feedElementType": "FeedItem",
+            "hasVerifiedComment": false,
+            "header": {
+                "isRichText": null,
+                "messageSegments": [
+                    {
+                        "motif": {
+                            "color": "1B96FF",
+                            "largeIconUrl": "/img/icon/profile64.png",
+                            "mediumIconUrl": "/img/icon/profile32.png",
+                            "smallIconUrl": "/img/icon/profile16.png",
+                            "svgIconUrl": null
+                        },
+                        "reference": {
+                            "id": "005IV000002mPB3YAM",
+                            "url": "/services/data/v60.0/chatter/users/005IV000002mPB3YAM"
+                        },
+                        "text": "Nicolas Despres",
+                        "type": "EntityLink"
+                    }
+                ],
+                "text": "Nicolas Despres"
+            },
+            "id": "0D5AU00000ugrhC0AQ",
+            "isDeleteRestricted": false,
+            "isSharable": false,
+            "modifiedDate": "2026-02-06T14:43:36.000Z",
+            "originalFeedItem": null,
+            "originalFeedItemActor": null,
+            "parent": {
+                "entityLabel": {
+                    "label": "Case",
+                    "labelPlural": "Cases"
+                },
+                "id": "500AP00000GsVGvYAN",
+                "motif": {
+                    "color": "FF538A",
+                    "largeIconUrl": "/img/icon/cases64.png",
+                    "mediumIconUrl": "/img/icon/cases32.png",
+                    "smallIconUrl": "/img/icon/cases16.png",
+                    "svgIconUrl": null
+                },
+                "mySubscription": null,
+                "name": "24-10-001029",
+                "type": "Case",
+                "url": "/services/data/v60.0/chatter/records/500AP00000GsVGvYAN"
+            },
+            "photoUrl": "https://test.force.com/profilephoto/005/T",
+            "relativeCreatedDate": "58m ago",
+            "type": "TextPost",
+            "url": "/services/data/v60.0/chatter/feed-elements/0D5AU00000ugrhC0AQ",
+            "visibility": "InternalUsers"
+        },
+        {
+            "actor": {
+                "additionalLabel": null,
+                "communityNickname": "Utilisateur17054174659347321197",
+                "companyName": null,
+                "displayName": "Nicolas Despres",
+                "firstName": "Nicolas",
+                "id": "005IV000002mPB3YAM",
+                "isActive": true,
+                "isInThisCommunity": true,
+                "lastName": "Despres",
+                "motif": {
+                    "color": "1B96FF",
+                    "largeIconUrl": "/img/icon/profile64.png",
+                    "mediumIconUrl": "/img/icon/profile32.png",
+                    "smallIconUrl": "/img/icon/profile16.png",
+                    "svgIconUrl": null
+                },
+                "mySubscription": null,
+                "name": "Nicolas Despres",
+                "outOfOffice": {
+                    "message": ""
+                },
+                "photo": {
+                    "fullEmailPhotoUrl": "https://test.sandbox.my.salesforce.com/img/userprofile/default_profile_200_v2.png?fromEmail=1",
+                    "largePhotoUrl": "https://test.force.com/profilephoto/005/F",
+                    "mediumPhotoUrl": "https://test.force.com/profilephoto/005/M",
+                    "photoVersionId": null,
+                    "smallPhotoUrl": "https://test.force.com/profilephoto/005/T",
+                    "standardEmailPhotoUrl": "https://test.sandbox.my.salesforce.com/img/userprofile/default_profile_45_v2.png?fromEmail=1",
+                    "url": "/services/data/v60.0/connect/user-profiles/005IV000002mPB3YAM/photo"
+                },
+                "reputation": null,
+                "title": null,
+                "type": "User",
+                "url": "/services/data/v60.0/chatter/users/005IV000002mPB3YAM",
+                "userType": "Internal"
+            },
+            "body": {
+                "isRichText": null,
+                "messageSegments": [],
+                "text": null
+            },
+            "capabilities": {
+                "associatedActions": {
+                    "platformActionGroups": []
+                },
+                "bookmarks": {
+                    "isBookmarkedByCurrentUser": false
+                },
+                "chatterLikes": {
+                    "isLikedByCurrentUser": false,
+                    "likesMessage": null,
+                    "myLike": null,
+                    "page": {
+                        "currentPageToken": 0,
+                        "currentPageUrl": "/services/data/v60.0/chatter/feed-elements/0D5AU00000uV22U0AS/capabilities/chatter-likes/items",
+                        "items": [],
+                        "nextPageToken": null,
+                        "nextPageUrl": null,
+                        "previousPageToken": null,
+                        "previousPageUrl": null,
+                        "total": 0
+                    }
+                },
+                "close": {
+                    "canContextUserUpdateIsClosed": true,
+                    "isClosed": false
+                },
+                "comments": {
+                    "page": {
+                        "currentPageToken": null,
+                        "currentPageUrl": "/services/data/v60.0/chatter/feed-elements/0D5AU00000uV22U0AS/capabilities/comments/items",
+                        "items": [],
+                        "nextPageToken": null,
+                        "nextPageUrl": null,
+                        "previousPageToken": null,
+                        "previousPageUrl": null,
+                        "total": 0
+                    }
+                },
+                "edit": {
+                    "isEditRestricted": false,
+                    "isEditableByMeUrl": "/services/data/v60.0/chatter/feed-elements/0D5AU00000uV22U0AS/capabilities/edit/is-editable-by-me",
+                    "lastEditedBy": null,
+                    "lastEditedDate": null,
+                    "latestRevision": 1,
+                    "relativeLastEditedDate": null
+                },
+                "emailMessage": {
+                    "attachments": [],
+                    "bccAddresses": [
+                        {
+                            "displayName": "",
+                            "emailAddress": "ndespres@salesforce.com",
+                            "relatedRecord": null
+                        }
+                    ],
+                    "body": "--------------- Original Message ---------------\nFrom: Nicolas Despres [ndespres@salesforce.com]\nSent: 10/09/2025 14:44\nTo: ndespres@salesforce.com\nSubject: test [ ]",
+                    "ccAddresses": [],
+                    "direction": "Outbound",
+                    "emailMessageId": "02sAU00000G8H7L",
+                    "fromAddress": {
+                        "displayName": "Nicolas Despres",
+                        "emailAddress": "ndespres@salesforce.com",
+                        "relatedRecord": null
+                    },
+                    "htmlExpandEmailThread": null,
+                    "isRichText": false,
+                    "status": "SentStatus",
+                    "subject": "RE: test",
+                    "toAddresses": [
+                        {
+                            "displayName": "Nicolas Despres",
+                            "emailAddress": "ndespres@salesforce.com",
+                            "relatedRecord": {
+                                "entityLabel": {
+                                    "label": "User",
+                                    "labelPlural": "Users"
+                                },
+                                "id": "005IV000002mPB3YAM",
+                                "motif": {
+                                    "color": "1B96FF",
+                                    "largeIconUrl": "/img/icon/profile64.png",
+                                    "mediumIconUrl": "/img/icon/profile32.png",
+                                    "smallIconUrl": "/img/icon/profile16.png",
+                                    "svgIconUrl": null
+                                },
+                                "mySubscription": null,
+                                "name": "Nicolas Despres",
+                                "type": "User",
+                                "url": "/services/data/v60.0/chatter/users/005IV000002mPB3YAM"
+                            }
+                        }
+                    ],
+                    "totalAttachments": 0
+                },
+                "interactions": {
+                    "count": 1
+                },
+                "mute": {
+                    "isMutedByMe": null
+                },
+                "readBy": {
+                    "isReadByMe": true,
+                    "lastReadDateByMe": "2026-02-02T13:32:50.000Z",
+                    "page": {
+                        "currentPageToken": null,
+                        "currentPageUrl": "/services/data/v60.0/chatter/feed-elements/0D5AU00000uV22U0AS/capabilities/read-by/items?pageSize=3",
+                        "items": [],
+                        "nextPageToken": null,
+                        "nextPageUrl": null,
+                        "previousPageToken": null,
+                        "previousPageUrl": null,
+                        "total": 0
+                    }
+                },
+                "status": {
+                    "feedEntityStatus": "Published",
+                    "isApprovableByMe": true
+                },
+                "topics": {
+                    "canAssignTopics": true,
+                    "items": []
+                },
+                "upDownVote": {
+                    "downVoteCount": 0,
+                    "myVote": "None",
+                    "upVoteCount": 0
+                }
+            },
+            "clientInfo": null,
+            "createdDate": "2026-02-02T13:32:50.000Z",
+            "event": false,
+            "feedElementType": "FeedItem",
+            "hasVerifiedComment": false,
+            "header": {
+                "isRichText": null,
+                "messageSegments": [
+                    {
+                        "motif": {
+                            "color": "1B96FF",
+                            "largeIconUrl": "/img/icon/profile64.png",
+                            "mediumIconUrl": "/img/icon/profile32.png",
+                            "smallIconUrl": "/img/icon/profile16.png",
+                            "svgIconUrl": null
+                        },
+                        "reference": {
+                            "id": "005IV000002mPB3YAM",
+                            "url": "/services/data/v60.0/chatter/users/005IV000002mPB3YAM"
+                        },
+                        "text": "Nicolas Despres",
+                        "type": "EntityLink"
+                    },
+                    {
+                        "text": " sent an email.",
+                        "type": "Text"
+                    }
+                ],
+                "text": "Nicolas Despres sent an email."
+            },
+            "id": "0D5AU00000uV22U0AS",
+            "isDeleteRestricted": true,
+            "isSharable": false,
+            "modifiedDate": "2026-02-02T13:32:50.000Z",
+            "originalFeedItem": null,
+            "originalFeedItemActor": null,
+            "parent": {
+                "entityLabel": {
+                    "label": "Case",
+                    "labelPlural": "Cases"
+                },
+                "id": "500AP00000GsVGvYAN",
+                "motif": {
+                    "color": "FF538A",
+                    "largeIconUrl": "/img/icon/cases64.png",
+                    "mediumIconUrl": "/img/icon/cases32.png",
+                    "smallIconUrl": "/img/icon/cases16.png",
+                    "svgIconUrl": null
+                },
+                "mySubscription": null,
+                "name": "24-10-001029",
+                "type": "Case",
+                "url": "/services/data/v60.0/chatter/records/500AP00000GsVGvYAN"
+            },
+            "photoUrl": "https://test.force.com/profilephoto/005/T",
+            "relativeCreatedDate": "2 February 2026 at 14:32",
+            "type": "EmailMessageEvent",
+            "url": "/services/data/v60.0/chatter/feed-elements/0D5AU00000uV22U0AS",
+            "visibility": "InternalUsers"
+        },
+        {
+            "actor": {
+                "additionalLabel": null,
+                "communityNickname": "Utilisateur17054174659347321197",
+                "companyName": null,
+                "displayName": "Nicolas Despres",
+                "firstName": "Nicolas",
+                "id": "005IV000002mPB3YAM",
+                "isActive": true,
+                "isInThisCommunity": true,
+                "lastName": "Despres",
+                "motif": {
+                    "color": "1B96FF",
+                    "largeIconUrl": "/img/icon/profile64.png",
+                    "mediumIconUrl": "/img/icon/profile32.png",
+                    "smallIconUrl": "/img/icon/profile16.png",
+                    "svgIconUrl": null
+                },
+                "mySubscription": null,
+                "name": "Nicolas Despres",
+                "outOfOffice": {
+                    "message": ""
+                },
+                "photo": {
+                    "fullEmailPhotoUrl": "https://test.sandbox.my.salesforce.com/img/userprofile/default_profile_200_v2.png?fromEmail=1",
+                    "largePhotoUrl": "https://test.force.com/profilephoto/005/F",
+                    "mediumPhotoUrl": "https://test.force.com/profilephoto/005/M",
+                    "photoVersionId": null,
+                    "smallPhotoUrl": "https://test.force.com/profilephoto/005/T",
+                    "standardEmailPhotoUrl": "https://test.sandbox.my.salesforce.com/img/userprofile/default_profile_45_v2.png?fromEmail=1",
+                    "url": "/services/data/v60.0/connect/user-profiles/005IV000002mPB3YAM/photo"
+                },
+                "reputation": null,
+                "title": null,
+                "type": "User",
+                "url": "/services/data/v60.0/chatter/users/005IV000002mPB3YAM",
+                "userType": "Internal"
+            },
+            "body": {
+                "isRichText": null,
+                "messageSegments": [],
+                "text": null
+            },
+            "capabilities": {
+                "associatedActions": {
+                    "platformActionGroups": []
+                },
+                "bookmarks": {
+                    "isBookmarkedByCurrentUser": false
+                },
+                "chatterLikes": {
+                    "isLikedByCurrentUser": false,
+                    "likesMessage": null,
+                    "myLike": null,
+                    "page": {
+                        "currentPageToken": 0,
+                        "currentPageUrl": "/services/data/v60.0/chatter/feed-elements/0D5AU00000mKIqG0AW/capabilities/chatter-likes/items",
+                        "items": [],
+                        "nextPageToken": null,
+                        "nextPageUrl": null,
+                        "previousPageToken": null,
+                        "previousPageUrl": null,
+                        "total": 0
+                    }
+                },
+                "close": {
+                    "canContextUserUpdateIsClosed": true,
+                    "isClosed": false
+                },
+                "comments": {
+                    "page": {
+                        "currentPageToken": null,
+                        "currentPageUrl": "/services/data/v60.0/chatter/feed-elements/0D5AU00000mKIqG0AW/capabilities/comments/items",
+                        "items": [],
+                        "nextPageToken": null,
+                        "nextPageUrl": null,
+                        "previousPageToken": null,
+                        "previousPageUrl": null,
+                        "total": 0
+                    }
+                },
+                "edit": {
+                    "isEditRestricted": false,
+                    "isEditableByMeUrl": "/services/data/v60.0/chatter/feed-elements/0D5AU00000mKIqG0AW/capabilities/edit/is-editable-by-me",
+                    "lastEditedBy": null,
+                    "lastEditedDate": null,
+                    "latestRevision": 1,
+                    "relativeLastEditedDate": null
+                },
+                "emailMessage": {
+                    "attachments": [],
+                    "bccAddresses": [],
+                    "body": " ",
+                    "ccAddresses": [],
+                    "direction": "Outbound",
+                    "emailMessageId": "02sAU00000DN6Bh",
+                    "fromAddress": {
+                        "displayName": "Nicolas Despres",
+                        "emailAddress": "ndespres@salesforce.com",
+                        "relatedRecord": null
+                    },
+                    "htmlExpandEmailThread": null,
+                    "isRichText": false,
+                    "status": "RepliedStatus",
+                    "subject": "test",
+                    "toAddresses": [
+                        {
+                            "displayName": "Nicolas Despres",
+                            "emailAddress": "ndespres@salesforce.com",
+                            "relatedRecord": {
+                                "entityLabel": {
+                                    "label": "User",
+                                    "labelPlural": "Users"
+                                },
+                                "id": "005IV000002mPB3YAM",
+                                "motif": {
+                                    "color": "1B96FF",
+                                    "largeIconUrl": "/img/icon/profile64.png",
+                                    "mediumIconUrl": "/img/icon/profile32.png",
+                                    "smallIconUrl": "/img/icon/profile16.png",
+                                    "svgIconUrl": null
+                                },
+                                "mySubscription": null,
+                                "name": "Nicolas Despres",
+                                "type": "User",
+                                "url": "/services/data/v60.0/chatter/users/005IV000002mPB3YAM"
+                            }
+                        }
+                    ],
+                    "totalAttachments": 0
+                },
+                "interactions": {
+                    "count": 1
+                },
+                "mute": {
+                    "isMutedByMe": null
+                },
+                "readBy": {
+                    "isReadByMe": true,
+                    "lastReadDateByMe": "2025-09-10T12:44:28.000Z",
+                    "page": {
+                        "currentPageToken": null,
+                        "currentPageUrl": "/services/data/v60.0/chatter/feed-elements/0D5AU00000mKIqG0AW/capabilities/read-by/items?pageSize=3",
+                        "items": [],
+                        "nextPageToken": null,
+                        "nextPageUrl": null,
+                        "previousPageToken": null,
+                        "previousPageUrl": null,
+                        "total": 0
+                    }
+                },
+                "status": {
+                    "feedEntityStatus": "Published",
+                    "isApprovableByMe": true
+                },
+                "topics": {
+                    "canAssignTopics": true,
+                    "items": []
+                },
+                "upDownVote": {
+                    "downVoteCount": 0,
+                    "myVote": "None",
+                    "upVoteCount": 0
+                }
+            },
+            "clientInfo": null,
+            "createdDate": "2025-09-10T12:44:28.000Z",
+            "event": false,
+            "feedElementType": "FeedItem",
+            "hasVerifiedComment": false,
+            "header": {
+                "isRichText": null,
+                "messageSegments": [
+                    {
+                        "motif": {
+                            "color": "1B96FF",
+                            "largeIconUrl": "/img/icon/profile64.png",
+                            "mediumIconUrl": "/img/icon/profile32.png",
+                            "smallIconUrl": "/img/icon/profile16.png",
+                            "svgIconUrl": null
+                        },
+                        "reference": {
+                            "id": "005IV000002mPB3YAM",
+                            "url": "/services/data/v60.0/chatter/users/005IV000002mPB3YAM"
+                        },
+                        "text": "Nicolas Despres",
+                        "type": "EntityLink"
+                    },
+                    {
+                        "text": " sent an email.",
+                        "type": "Text"
+                    }
+                ],
+                "text": "Nicolas Despres sent an email."
+            },
+            "id": "0D5AU00000mKIqG0AW",
+            "isDeleteRestricted": true,
+            "isSharable": false,
+            "modifiedDate": "2025-09-10T12:44:28.000Z",
+            "originalFeedItem": null,
+            "originalFeedItemActor": null,
+            "parent": {
+                "entityLabel": {
+                    "label": "Case",
+                    "labelPlural": "Cases"
+                },
+                "id": "500AP00000GsVGvYAN",
+                "motif": {
+                    "color": "FF538A",
+                    "largeIconUrl": "/img/icon/cases64.png",
+                    "mediumIconUrl": "/img/icon/cases32.png",
+                    "smallIconUrl": "/img/icon/cases16.png",
+                    "svgIconUrl": null
+                },
+                "mySubscription": null,
+                "name": "24-10-001029",
+                "type": "Case",
+                "url": "/services/data/v60.0/chatter/records/500AP00000GsVGvYAN"
+            },
+            "photoUrl": "https://test.force.com/profilephoto/005/T",
+            "relativeCreatedDate": "10 September 2025 at 14:44",
+            "type": "EmailMessageEvent",
+            "url": "/services/data/v60.0/chatter/feed-elements/0D5AU00000mKIqG0AW",
+            "visibility": "InternalUsers"
+        }
+    ],
+    "isModifiedUrl": null,
+    "isModifiedToken": null,
+    "updatesUrl": null,
+    "updatesToken": null,
+    "nextPageUrl": null,
+    "nextPageToken": null,
+    "currentPageUrl": null,
+    "currentPageToken": null
+}
