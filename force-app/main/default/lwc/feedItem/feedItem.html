@@ -1,21 +1,19 @@
 <template>
     <li class="slds-item slds-p-around_medium">
         <div class="">
-            <div class="slds-media__figure">
-                
-            </div>
+
             <div class="slds-media__body">
                 <div class="slds-grid slds-grid_align-spread slds-m-bottom_x-small">
                     <div class="slds-truncate">
+
+
                         <span class="slds-text-title_bold">
-                            
-                                {header}
-                           
-                           
+                            {header}
                         </span>
-                      
-                            <span class="slds-text-color_weak slds-m-left_x-small">({element.type})</span>
-                      
+
+
+                        <span class="slds-text-color_weak slds-m-left_x-small">({element.type})</span>
+
                     </div>
                     <div class="slds-text-color_weak slds-text-body_small">
                         {element.relativeCreatedDate}
@@ -26,13 +24,13 @@
                 <template if:true={isEmailElement}>
                     <div class="email-toggle-container">
                         <button class="slds-button slds-button_icon slds-button_icon-border-filled email-toggle-button"
-                            onclick={toggleEmailContent}
-                            aria-expanded={isEmailExpanded}
+                            onclick={toggleEmailContent} aria-expanded={isEmailExpanded}
                             aria-label="Toggle email content">
-                            <lightning-icon icon-name={toggleIcon} size="x-small" class="slds-button__icon"></lightning-icon>
+                            <lightning-icon icon-name={toggleIcon} size="x-small"
+                                class="slds-button__icon"></lightning-icon>
                             <span class="slds-assistive-text">Toggle email content</span>
                         </button>
-                        
+
                         <template if:true={isEmailExpanded}>
                             <div class="email slds-box slds-theme_default slds-m-bottom_small">
                                 <div class="slds-grid slds-wrap slds-gutters">
@@ -105,18 +103,27 @@
                     <div class="slds-text-color_weak slds-p-around_small slds-border_top">
                         <template if:true={element.Channel__c}>
                             <div class="slds-grid slds-gutters slds-wrap">
-                                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
-                                    <div class="row">
-                                        <span class="label">Channel:</span>
-                                        <span class="value">{element.Channel__c.value}</span>
-                                    </div>
-                                </div>
+                                
                                 <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
                                     <div class="row">
                                         <span class="label">Date:</span>
                                         <span class="value">{createdDateValue}</span>
                                     </div>
                                 </div>
+                                <template if:true={hasActorId}>
+                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                        <div class="row">
+                                            <span class="label">Interaction with:</span>
+
+                                            <a href={actorUrl} class="slds-text-title_bold">
+                                                {actorName}
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </template>
+
                             </div>
                         </template>
                         <template if:false={element.Channel__c}>
@@ -127,6 +134,6 @@
             </div>
         </div>
 
-      
+
     </li>
 </template>

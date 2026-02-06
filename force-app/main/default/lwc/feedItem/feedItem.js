@@ -4,6 +4,29 @@ export default class FeedItem extends LightningElement {
     @api element;
     _isEmailExpanded = false;
     
+    get hasActor() {
+        return !!this.element?.actor;
+    }
+
+    get hasActorId() {
+        // Check if actorId is populated (for linking)
+        return !!this.element?.actorId;
+    }
+
+    get actorName() {
+      
+        return this.element?.actorName;
+    }
+
+    get actorUrl() {
+        // Generate URL for the actor object if actorId exists
+        if (this.element?.actorId) {
+            // For User objects, use the standard Salesforce URL format
+            return `/lightning/r/User/${this.element.actorId}/view`;
+        }
+        return '';
+    }
+
     get isEmailElement() {
         // Check if this is a feed element with email capabilities
         if (this.element?.type === 'EmailMessageEvent' || this.element?.capabilities?.emailMessage) {
@@ -31,6 +54,34 @@ export default class FeedItem extends LightningElement {
         const first = parts[0]?.charAt(0) || '';
         const last = parts.length > 1 ? parts[parts.length - 1].charAt(0) : '';
         return (first + last).toUpperCase();
+    }
+
+    get actorIconName() {
+        // Return appropriate icon based on actor type
+        if (this.element?.actor?.type === 'User') {
+            return 'standard:user';
+        } else if (this.element?.actor?.type === 'Account') {
+            return 'standard:account';
+        } else if (this.element?.actor?.type === 'Contact') {
+            return 'standard:contact';
+        } else {
+            return 'utility:user';
+        }
+    }
+
+    get defaultIconName() {
+        // Return appropriate icon based on element type
+        if (this.element?.type === 'TextPost') {
+            return 'utility:text';
+        } else if (this.element?.type === 'EmailMessageEvent') {
+            return 'utility:email';
+        } else if (this.element?.type === 'ContentPost') {
+            return 'utility:document';
+        } else if (this.element?.type === 'LinkPost') {
+            return 'utility:link';
+        } else {
+            return 'utility:feed';
+        }
     }
 
     get photoUrl() {
