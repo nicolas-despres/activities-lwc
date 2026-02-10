@@ -28,12 +28,11 @@
                                 <p class="slds-m-horizontal_xx-small slds-text-color_weak">{relativeDate}</p>
                             </div>
                         </div>
-                        <p class="slds-m-horizontal_xx-small">
-                            <span>{actorName}</span> sent an email to 
-                            <template for:each={toAddresses} for:item="to">
-                                <span key={to.emailAddress}><strong> {to.displayName}</strong></span>
-                            </template>
-                        </p>
+                        <template if:true={hasToAddresses}>
+                            <p class="slds-m-horizontal_xx-small slds-text-body_regular">
+                                <span>{actorName}</span> sent an email to <strong>{formattedToAddresses}</strong>
+                            </p>
+                        </template>
                         
                         <template lwc:if={isExpanded}>
                             <c-mce-email-preview-wrapper ></c-mce-email-preview-wrapper>

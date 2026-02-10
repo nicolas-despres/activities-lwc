@@ -21,9 +21,7 @@
                             </lightning-icon>
                         </button>
 
-                      
-                       
-                        <div class={iconClass} title={defaultIconName}>
+                        <div class={iconContainerClass} title={defaultIconName}>
                             <lightning-icon icon-name={defaultIconName} size="small"></lightning-icon>
                         </div>
                     </div>
@@ -32,23 +30,65 @@
                             <div
                                 class="slds-grid slds-grid_vertical-align-center slds-truncate_container_75 slds-no-space">
                                 <h3 class="slds-truncate" title={header}>
-                                    <template if:true={element.relatedObjectId}>
+                                    <template if:true={relatedObjectId}>
                                         <lightning-formatted-url value={relatedObjectUrl} label={header} class="slds-text-title_bold">
                                         </lightning-formatted-url>
                                     </template>
-                                    <template if:false={element.relatedObjectId}>
+                                    <template if:false={relatedObjectId}>
                                         <strong>{header}</strong>
                                     </template>
 
                                 </h3>
                             </div>
                             <div class="slds-timeline__actions slds-timeline__actions_inline">
-                                <p class="slds-timeline__date">{createdDateValue}</p>
+                                <template if:true={hasDate}>
+                                    <lightning-formatted-date-time 
+                                        value={createdDateValue} 
+                                        year="numeric"
+                                        month="short"
+                                        day="2-digit"
+                                        hour="2-digit"
+                                        minute="2-digit"
+                                        class="slds-timeline__date">
+                                    </lightning-formatted-date-time>
+                                </template>
                             </div>
                         </div>
-                        <p class="slds-m-horizontal_xx-small">
-                            {bodyText}
-                        </p>
+                        <template if:true={hasTrackedChanges}>
+                            <div class="slds-m-horizontal_xx-small slds-m-top_x-small">
+                                <template for:each={formattedTrackedChanges} for:item="change">
+                                    <div key={change.fieldName} class="slds-m-bottom_xx-small">
+                                        <span class="slds-text-body_small">
+                                            <strong>{change.fieldName}:</strong>
+                                            <template if:true={change.oldValue}>
+                                                <span class="slds-m-horizontal_xx-small">
+                                                    <span class="slds-text-color_error">{change.oldValue}</span>
+                                                    <span class="slds-m-horizontal_xx-small">→</span>
+                                                    <span class="slds-text-color_success">{change.newValue}</span>
+                                                </span>
+                                            </template>
+                                            <template if:false={change.oldValue}>
+                                                <span class="slds-m-horizontal_xx-small slds-text-color_success">{change.newValue}</span>
+                                            </template>
+                                        </span>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                        <template if:false={hasTrackedChanges}>
+                            <template if:true={hasBodyText}>
+                                <template if:true={isRichTextBody}>
+                                    <div class="slds-m-horizontal_xx-small slds-text-body_regular rich-text-body" 
+                                         lwc:dom="manual">
+                                    </div>
+                                </template>
+                                <template if:false={isRichTextBody}>
+                                    <p class="slds-m-horizontal_xx-small slds-text-body_regular">
+                                        {bodyText}
+                                    </p>
+                                </template>
+                            </template>
+                        </template>
                     </div>
                 </div>
             </div>

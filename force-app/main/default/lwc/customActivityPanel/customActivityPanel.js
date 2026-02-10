@@ -18,6 +18,7 @@ const ENGAGEMENT_INTERACTIONS_QUERY = gql`
                 Id
                 Name { value }
               }
+                Comment__c { value }
               InitiatingAttendee {
                 __typename
                 ... on Account {
@@ -167,14 +168,20 @@ export default class CustomActivityPanel extends LightningElement {
                 const date = interaction.node.CreatedDate?.value;
                 // Add icon information based on element type
                 const iconInfo = this.getActivityIconInfo('EngagementInteraction');
-                const actorName = interaction.node.InitiatingAttendee?.Name?.value
+                const actorName = interaction.node.InitiatingAttendee?.Name?.value;
+                const userName = interaction.node.CreatedBy?.Name?.value || '';
+                const channelType = interaction.node.Channel__c?.value || '';
+                const comment = interaction.node.Comment__c?.value || '';
+                // Construct sentence based on username, attendee, and channel type
+                const bodyText = this.constructInteractionSentence(userName, actorName, channelType, comment);
+                
                 return {
                     ...interaction.node,
                     type: 'EngagementInteraction',
                     date: date,
                     relatedObjectId: interaction.node.Id,
                     relatedObjectApiName: 'EngagementInteraction',
-                    body: 'Vous avez appelé ' + actorName,
+                    body: bodyText,
                     actorId: interaction.node.InitiatingAttendee?.Id,
                     actorName: interaction.node.InitiatingAttendee?.Name?.value,
                     ...iconInfo
@@ -194,14 +201,51 @@ export default class CustomActivityPanel extends LightningElement {
     }
 
     /**
+     * Constructs a sentence describing the engagement interaction
+     * @param {string} userName - Name of the user who created the interaction
+     * @param {string} attendeeName - Name of the attendee
+     * @param {string} channelType - Type of interaction channel
+     * @returns {string} Formatted sentence
+     */
+    constructInteractionSentence(userName, attendeeName, channelType, comment) {
+        if (!userName) {
+            return attendeeName || '';
+        }
+
+        if (!attendeeName) {
+            return userName;
+        }
+
+        // Map channel types to action verbs (French)
+        const channelActionMap = {
+            'Call': 'a appelé',
+            'Appel': 'a appelé',
+            'AppelEntrant': 'a reçu un appel de',
+            'Incoming Call': 'a reçu un appel de',
+            'Email': 'a envoyé un email à',
+            'Meeting': 'a rencontré',
+            'Réunion': 'a rencontré',
+            'SMS': 'a envoyé un SMS à',
+            'Chat': 'a discuté avec',
+            'Video Call': 'a eu un appel vidéo avec',
+            'Appel vidéo': 'a eu un appel vidéo avec'
+        };
+
+        const action = channelActionMap[channelType] || 'a interagi avec';
+        
+        return `${userName} ${action} ${attendeeName} -\n ${comment}`;
+    }
+
+    /**
      * Get icon information based on activity type
      * @param {string} activityType - Type of activity
      * @returns {Object} Icon information object
      */
     getActivityIconInfo(activityType) {
         switch (activityType) {
+            
             case 'TextPost':
-                return { icon: 'utility:text' };
+                return { icon: 'standard:text' };
             case 'EmailMessageEvent':
                 return { icon: 'utility:email' };
             case 'ContentPost':
@@ -211,7 +255,7 @@ export default class CustomActivityPanel extends LightningElement {
             case 'EngagementInteraction':
                 return { icon: 'standard:log_a_call' };
             default:
-                return { icon: 'utility:feed' };
+                return { icon: 'standard:task' };
         }
     }
 
