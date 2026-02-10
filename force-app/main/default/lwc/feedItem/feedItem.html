@@ -1,139 +1,61 @@
 <template>
-    <li class="slds-item slds-p-around_medium">
-        <div class="">
-
-            <div class="slds-media__body">
-                <div class="slds-grid slds-grid_align-spread slds-m-bottom_x-small">
-                    <div class="slds-truncate">
-
-
-                        <span class="slds-text-title_bold">
-                            {header}
-                        </span>
-
-
-                        <span class="slds-text-color_weak slds-m-left_x-small">({element.type})</span>
-
-                    </div>
-                    <div class="slds-text-color_weak slds-text-body_small">
-                        {element.relativeCreatedDate}
-                    </div>
-                </div>
-
-                <!-- Email rendering -->
-                <template if:true={isEmailElement}>
-                    <div class="email-toggle-container">
-                        <button class="slds-button slds-button_icon slds-button_icon-border-filled email-toggle-button"
-                            onclick={toggleEmailContent} aria-expanded={isEmailExpanded}
-                            aria-label="Toggle email content">
-                            <lightning-icon icon-name={toggleIcon} size="x-small"
-                                class="slds-button__icon"></lightning-icon>
-                            <span class="slds-assistive-text">Toggle email content</span>
+    <!-- Email rendering -->
+    <template if:true={isEmailElement}>
+        <c-feed-email email-data={element}>
+        </c-feed-email>
+    </template>
+    <template if:false={isEmailElement}>
+        <li>
+            <div class="slds-timeline__item_expandable slds-timeline__item_event">
+                <span class="slds-assistive-text">{defaultIconName}</span>
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <button class="slds-button slds-button_icon slds-m-right_x-small" 
+                                onclick={toggleExpand} 
+                                aria-controls="email-content" 
+                                aria-expanded={isExpanded}>
+                            <lightning-icon 
+                                icon-name={buttonIconName} 
+                                size="x-small" 
+                                class={iconClass}>
+                            </lightning-icon>
                         </button>
 
-                        <template if:true={isEmailExpanded}>
-                            <div class="email slds-box slds-theme_default slds-m-bottom_small">
-                                <div class="slds-grid slds-wrap slds-gutters">
-                                    <div class="slds-col slds-size_1-of-1">
-                                        <div class="row">
-                                            <span class="label">Subject:</span>
-                                            <span class="value">{emailSubject}</span>
-                                        </div>
-                                    </div>
-                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
-                                        <div class="row">
-                                            <span class="label">From:</span>
-                                            <span class="value">{emailFromAddress}</span>
-                                        </div>
-                                    </div>
-                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
-                                        <div class="row">
-                                            <span class="label">To:</span>
-                                            <span class="value">{emailToAddresses}</span>
-                                        </div>
-                                    </div>
-
-                                    <template if:true={element.capabilities.emailMessage.ccAddresses}>
-                                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
-                                            <div class="row">
-                                                <span class="label">Cc:</span>
-                                                <span class="value">{emailCcAddresses}</span>
-                                            </div>
-                                        </div>
+                      
+                       
+                        <div class={iconClass} title={defaultIconName}>
+                            <lightning-icon icon-name={defaultIconName} size="small"></lightning-icon>
+                        </div>
+                    </div>
+                    <div class="slds-media__body">
+                        <div class="slds-grid slds-grid_align-spread slds-timeline__trigger">
+                            <div
+                                class="slds-grid slds-grid_vertical-align-center slds-truncate_container_75 slds-no-space">
+                                <h3 class="slds-truncate" title={header}>
+                                    <template if:true={element.relatedObjectId}>
+                                        <lightning-formatted-url value={relatedObjectUrl} label={header} class="slds-text-title_bold">
+                                        </lightning-formatted-url>
                                     </template>
-                                    <template if:true={element.capabilities.emailMessage.bccAddresses}>
-                                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
-                                            <div class="row">
-                                                <span class="label">Bcc:</span>
-                                                <span class="value">{emailBccAddresses}</span>
-                                            </div>
-                                        </div>
+                                    <template if:false={element.relatedObjectId}>
+                                        <strong>{header}</strong>
                                     </template>
 
-                                    <div class="slds-col slds-size_1-of-1">
-                                        <div class="row">
-                                            <span class="label">Direction:</span>
-                                            <span class="value">{emailDirection}</span>
-                                        </div>
-                                    </div>
-                                    <div class="slds-col slds-size_1-of-1">
-                                        <div class="row">
-                                            <span class="label">Status:</span>
-                                            <span class="value badge">{emailStatus}</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="slds-col slds-size_1-of-1 slds-m-top_small">
-                                        <div class="row">
-                                            <span class="label block">Body:</span>
-                                        </div>
-                                        <div class="email-body slds-box slds-m-top_x-small">
-                                            <!-- Render as preformatted text to mimic email block -->
-                                            <pre class="wrap">{emailBody}</pre>
-                                        </div>
-                                    </div>
-                                </div>
+                                </h3>
                             </div>
-                        </template>
-                    </div>
-                </template>
-
-                <!-- Fallback for non-email elements (engagement interactions) -->
-                <template if:false={isEmailElement}>
-                    <div class="slds-text-color_weak slds-p-around_small slds-border_top">
-                        <template if:true={element.Channel__c}>
-                            <div class="slds-grid slds-gutters slds-wrap">
-                                
-                                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
-                                    <div class="row">
-                                        <span class="label">Date:</span>
-                                        <span class="value">{createdDateValue}</span>
-                                    </div>
-                                </div>
-                                <template if:true={hasActorId}>
-                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
-                                        <div class="row">
-                                            <span class="label">Interaction with:</span>
-
-                                            <a href={actorUrl} class="slds-text-title_bold">
-                                                {actorName}
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-                                </template>
-
+                            <div class="slds-timeline__actions slds-timeline__actions_inline">
+                                <p class="slds-timeline__date">{createdDateValue}</p>
                             </div>
-                        </template>
-                        <template if:false={element.Channel__c}>
-                            This feed element type is not yet supported in this panel.
-                        </template>
+                        </div>
+                        <p class="slds-m-horizontal_xx-small">
+                            {bodyText}
+                        </p>
                     </div>
-                </template>
+                </div>
             </div>
-        </div>
+        </li>
+    </template>
 
 
-    </li>
+
+
 </template>

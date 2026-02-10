@@ -2,6 +2,40 @@ import { LightningElement, api, track, wire } from 'lwc';
 import getRecordFeed from '@salesforce/apex/CustomActivityFeedController.getRecordFeed';
 import { gql, graphql, refreshGraphQL } from 'lightning/uiGraphQLApi'
 
+const ENGAGEMENT_INTERACTIONS_QUERY = gql`
+  query EngagementInteractions($recordId: ID!) {
+    uiapi {
+      query {
+        EngagementInteraction(
+          where: { Case__c: { eq: $recordId } }
+        ) {
+          edges {
+            node {
+              Id
+              Channel__c { value }
+              CreatedDate { value }
+              CreatedBy {
+                Id
+                Name { value }
+              }
+              InitiatingAttendee {
+                __typename
+                ... on Account {
+                  Id
+                  Name { value }
+                }
+                ... on Contact {
+                  Id
+                  Name { value }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
 /**
  * @typedef {Object} ActivityItem
@@ -28,7 +62,7 @@ export default class CustomActivityPanel extends LightningElement {
 
     get variables() {
         return {
-           recordId: this.recordId,
+            recordId: this.recordId,
         }
     }
 
@@ -39,48 +73,15 @@ export default class CustomActivityPanel extends LightningElement {
     }
 
     @wire(graphql, {
-        query: gql`query ($recordId: ID!="%") {
-    uiapi {
-        query {
-            EngagementInteraction (where: {Case__c: {eq: $recordId}}) {
-                edges {
-                    node {
-                        Channel__c {
-                            value
-                        }
-                        CreatedDate {
-                            value
-                        }
-                        Id
-                        InitiatingAttendee {
-                        __typename
-                        ... on Account {
-                            Name {
-                                 value
-                            }
-                            Id
-                        }
-                        ... on Contact {
-                            Name {
-                                 value
-                            }
-                            Id
-                        }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}`,
+        query: ENGAGEMENT_INTERACTIONS_QUERY,
         variables: "$variables",
     })
     graphqlQueryResult(result) {
         const { data, errors } = result;
-        
+
         if (data) {
-            this.result = { 
-                    data
+            this.result = {
+                data
             }
             // Combine the data once we have both sources
             this.combineActivities();
@@ -142,7 +143,7 @@ export default class CustomActivityPanel extends LightningElement {
      */
     combineActivities() {
         let allActivities = [];
-        
+
         // Process feed elements if available
         if (this.feed && Array.isArray(this.feed.elements)) {
             allActivities = allActivities.concat(this.feed.elements.map(element => {
@@ -158,7 +159,7 @@ export default class CustomActivityPanel extends LightningElement {
                 };
             }));
         }
-        
+
         // Process engagement interactions if available
         const engagementInteractions = this.engagementInteractions;
         if (engagementInteractions && Array.isArray(engagementInteractions)) {
@@ -166,25 +167,29 @@ export default class CustomActivityPanel extends LightningElement {
                 const date = interaction.node.CreatedDate?.value;
                 // Add icon information based on element type
                 const iconInfo = this.getActivityIconInfo('EngagementInteraction');
+                const actorName = interaction.node.InitiatingAttendee?.Name?.value
                 return {
                     ...interaction.node,
                     type: 'EngagementInteraction',
                     date: date,
+                    relatedObjectId: interaction.node.Id,
+                    relatedObjectApiName: 'EngagementInteraction',
+                    body: 'Vous avez appelé ' + actorName,
                     actorId: interaction.node.InitiatingAttendee?.Id,
                     actorName: interaction.node.InitiatingAttendee?.Name?.value,
                     ...iconInfo
-                    
+
                 };
             }));
         }
-        
+
         // Sort by date descending (most recent first)
         allActivities.sort((a, b) => {
             const dateA = new Date(a.date);
             const dateB = new Date(b.date);
             return dateB - dateA; // Descending order
         });
-        
+
         this.combinedActivities = allActivities;
     }
 
@@ -194,7 +199,7 @@ export default class CustomActivityPanel extends LightningElement {
      * @returns {Object} Icon information object
      */
     getActivityIconInfo(activityType) {
-        switch(activityType) {
+        switch (activityType) {
             case 'TextPost':
                 return { icon: 'utility:text' };
             case 'EmailMessageEvent':
@@ -204,7 +209,7 @@ export default class CustomActivityPanel extends LightningElement {
             case 'LinkPost':
                 return { icon: 'utility:link' };
             case 'EngagementInteraction':
-                return { icon: 'utility:feed' };
+                return { icon: 'standard:log_a_call' };
             default:
                 return { icon: 'utility:feed' };
         }
@@ -223,12 +228,12 @@ export default class CustomActivityPanel extends LightningElement {
         return !!this.nextPageToken;
     }
 
-    get engagementInteractions(){
+    get engagementInteractions() {
         const values = Object.values(this.result?.data?.uiapi.query || {})
-        return values.length>0 ? values[0].edges : []
+        return values.length > 0 ? values[0].edges : []
     }
 
-    get nbInteractions(){
+    get nbInteractions() {
         return this.engagementInteractions.length
     }
 }

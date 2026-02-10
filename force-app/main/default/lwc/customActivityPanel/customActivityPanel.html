@@ -34,7 +34,7 @@
             </template>
 
             <template if:true={hasElements}>
-                <ul class="slds-has-dividers_around-space">
+                <ul class="slds-timeline">
                     <template for:each={combinedActivities} for:item="el">
                         <c-feed-item key={el.id} element={el}></c-feed-item>
                     </template>

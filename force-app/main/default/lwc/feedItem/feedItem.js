@@ -2,19 +2,43 @@ import { LightningElement, api } from 'lwc';
 
 export default class FeedItem extends LightningElement {
     @api element;
-    _isEmailExpanded = false;
-    
+    isExpanded = false;
+
+    get timelineItemClass() {
+        return `slds-timeline__item_expandable slds-timeline__item_email ${this.isExpanded ? 'slds-is-open' : ''}`;
+    }
+
     get hasActor() {
         return !!this.element?.actor;
     }
+
+    get buttonIconName() {
+        return this.isExpanded ? 'utility:chevronup' : 'utility:chevrondown';
+    }
+
+    toggleExpand() {
+        this.isExpanded = !this.isExpanded;
+    }
+
 
     get hasActorId() {
         // Check if actorId is populated (for linking)
         return !!this.element?.actorId;
     }
 
+    get iconClass() {
+        return `slds-icon_container slds-icon-${this.defaultIconName} slds-timeline__icon`;
+    }
+
+    get bodyText() {
+        // Handle different body text locations based on type
+       
+        // For engagement interactions, we might not have a body, so return empty
+        return typeof this.element?.body === 'string' ? this.element.body : '';
+    }
+
     get actorName() {
-      
+
         return this.element?.actorName;
     }
 
@@ -26,6 +50,16 @@ export default class FeedItem extends LightningElement {
         }
         return '';
     }
+
+    get relatedObjectUrl() {
+        // Generate URL for the actor object if actorId exists
+        if (this.element?.relatedObjectId) {
+            // For User objects, use the standard Salesforce URL format
+            return `/lightning/r/${this.element.relatedObjectApiName}/${this.element.relatedObjectId}/view`;
+        }
+        return '';
+    }
+
 
     get isEmailElement() {
         // Check if this is a feed element with email capabilities
@@ -39,9 +73,12 @@ export default class FeedItem extends LightningElement {
     get header() {
         // Handle different data structures
         if (this.element?.type === 'FeedElement') {
-            return this.element?.capabilities?.emailMessage?.subject 
-            || this.element.body?.text  // type TextPost
-            || this.element?.header || '';
+            if (this.element.header?.text) {
+                return this.element.header.text;
+            }
+            return this.element?.capabilities?.emailMessage?.subject
+                || this.element.body?.text  // type TextPost
+                || this.element?.header || '';
         } else {
             // For engagement interactions, use a different approach
             return this.element?.Channel__c?.value || 'Engagement Interaction';
@@ -69,8 +106,12 @@ export default class FeedItem extends LightningElement {
         }
     }
 
+
     get defaultIconName() {
         // Return appropriate icon based on element type
+        if (this.element?.icon) {
+            return this.element.icon
+        }
         if (this.element?.type === 'TextPost') {
             return 'utility:text';
         } else if (this.element?.type === 'EmailMessageEvent') {
@@ -89,46 +130,7 @@ export default class FeedItem extends LightningElement {
         return small || this.element?.photoUrl || null;
     }
 
-    // Email formatting helpers - only available for feed elements
-    get emailSubject() {
-        return this.element?.capabilities?.emailMessage?.subject || '';
-    }
-
-    get emailFromAddress() {
-        const fromAddress = this.element?.capabilities?.emailMessage?.fromAddress;
-        return fromAddress ? this.formatAddress(fromAddress) : '';
-    }
-
-    get emailToAddresses() {
-        const toAddresses = this.element?.capabilities?.emailMessage?.toAddresses;
-        return toAddresses ? this.formatAddressList(toAddresses) : '';
-    }
-
-    get emailCcAddresses() {
-        const ccAddresses = this.element?.capabilities?.emailMessage?.ccAddresses;
-        return ccAddresses ? this.formatAddressList(ccAddresses) : '';
-    }
-
-    get emailBccAddresses() {
-        const bccAddresses = this.element?.capabilities?.emailMessage?.bccAddresses;
-        return bccAddresses ? this.formatAddressList(bccAddresses) : '';
-    }
-
-    get emailDirection() {
-        return this.element?.capabilities?.emailMessage?.direction || '';
-    }
-
-    get emailStatus() {
-        return this.element?.capabilities?.emailMessage?.status || '';
-    }
-
-    get emailBody() {
-        return this.element?.capabilities?.emailMessage?.body || '';
-    }
-
-    get isEmailExpanded() {
-        return this._isEmailExpanded;
-    }
+    
 
     get toggleIcon() {
         return this._isEmailExpanded ? 'utility:chevronup' : 'utility:chevrondown';
@@ -146,19 +148,4 @@ export default class FeedItem extends LightningElement {
         return '';
     }
 
-    // Formatting helpers
-    formatAddress(addr) {
-        if (!addr) return '';
-        const dn = addr.displayName && addr.displayName.trim().length > 0 ? addr.displayName : addr.emailAddress;
-        return dn || addr.emailAddress || '';
-    }
-
-    formatAddressList(list) {
-        if (!list || !Array.isArray(list) || list.length === 0) return '';
-        return list.map(a => this.formatAddress(a)).join(', ');
-    }
-
-    toggleEmailContent() {
-        this._isEmailExpanded = !this._isEmailExpanded;
-    }
 }

@@ -1,0 +1,59 @@
+<template>
+   <li>
+            <div class={timelineItemClass}>
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <button class="slds-button slds-button_icon slds-m-right_x-small" 
+                                onclick={toggleExpand} 
+                                aria-controls="email-content" 
+                                aria-expanded={isExpanded}>
+                            <lightning-icon 
+                                icon-name={buttonIconName} 
+                                size="x-small" 
+                                class={iconClass}>
+                            </lightning-icon>
+                        </button>
+                        <div class="slds-icon_container slds-icon-standard-email slds-timeline__icon" title="email">
+                            <lightning-icon icon-name="standard:email" size="small"></lightning-icon>
+                        </div>
+                    </div>
+                    <div class="slds-media__body">
+                        <div class="slds-grid slds-grid_align-spread slds-timeline__trigger">
+                            <div class="slds-grid slds-grid_vertical-align-center slds-truncate_container_75 slds-no-space">
+                                <h3 class="slds-truncate" title={subject}>
+                                    <strong>{subject}</strong>
+                                </h3>
+                            </div>
+                            <div class="slds-timeline__actions_right">
+                                <p class="slds-m-horizontal_xx-small slds-text-color_weak">{relativeDate}</p>
+                            </div>
+                        </div>
+                        <p class="slds-m-horizontal_xx-small">
+                            <span>{actorName}</span> sent an email to 
+                            <template for:each={toAddresses} for:item="to">
+                                <span key={to.emailAddress}><strong> {to.displayName}</strong></span>
+                            </template>
+                        </p>
+                        
+                        <template lwc:if={isExpanded}>
+                            <c-mce-email-preview-wrapper ></c-mce-email-preview-wrapper>
+                       
+                            <article class="slds-box slds-timeline__item_details slds-theme_shade slds-m-top_small" 
+                                     id="email-content">
+                                <ul class="slds-list_horizontal slds-wrap">
+                                    <li class="slds-grid slds-grid_vertical slds-size_1-of-1 slds-p-bottom_small">
+                                        <span class="slds-text-title">From</span>
+                                        <span class="slds-text-body_medium">{fromAddress}</span>
+                                    </li>
+                                </ul>
+                                <div class="slds-text-title slds-p-bottom_x-small">Message Body</div>
+                                <div class="slds-text-body_medium">
+                                    <lightning-formatted-rich-text value={emailBody}></lightning-formatted-rich-text>
+                                </div>
+                            </article>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </li>
+</template>
